@@ -151,11 +151,18 @@ PVOID sendGstreamerAudioVideo(PVOID args)
                     "video/x-h264,stream-format=byte-stream,alignment=au,profile=baseline ! appsink sync=TRUE emit-signals=TRUE name=appsink-video",
                     &error);
             } else {
-                pipeline = gst_parse_launch(
-                    "autovideosrc ! queue ! videoconvert ! video/x-raw,width=1280,height=720,framerate=[30/1,10000000/333333] ! "
-                    "x264enc bframes=0 speed-preset=veryfast bitrate=512 byte-stream=TRUE tune=zerolatency ! "
-                    "video/x-h264,stream-format=byte-stream,alignment=au,profile=baseline ! appsink sync=TRUE emit-signals=TRUE name=appsink-video",
-                    &error);
+                // pipeline = gst_parse_launch(
+                //     "autovideosrc ! queue ! videoconvert ! video/x-raw,width=1280,height=720,framerate=[30/1,10000000/333333] ! "
+                //     "x264enc bframes=0 speed-preset=veryfast bitrate=512 byte-stream=TRUE tune=zerolatency ! "
+                //     "video/x-h264,stream-format=byte-stream,alignment=au,profile=baseline ! appsink sync=TRUE emit-signals=TRUE name=appsink-video",
+                //     &error);
+
+                // Patrick added
+                char *gsconfig_env = NULL;
+                gsconfig_env = getenv("GSTREAMER_WEBRTC_CONFIG");
+                pipeline = gst_parse_launch(gsconfig_env, &error);
+                //end Patrick added 
+
             }
             break;
 
