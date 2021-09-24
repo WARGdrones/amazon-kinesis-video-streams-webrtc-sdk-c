@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>kinesis_webrtc</name>
+  <version>0.0.0</version>
+  <description>The kinesis_webrtc package</description>
+
+  <maintainer email="patrick@wargdrones.com">Patrick Oetken</maintainer>
+  <maintainer email="nick@rocknitive.com">Patrick Oetken</maintainer>
+  <license>MIT</license>
+
+  <author>patrick@wargdrones.com</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- <buildtool_depend>catkin_simple</buildtool_depend> -->
+
+  <!-- <depend>actionlib</depend>
+  <depend>message_generation</depend>
+  <depend>actionlib_msgs</depend>
+  <depend>Boost</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+   -->
+
+  <export>
+    
+  </export>
+</package>
