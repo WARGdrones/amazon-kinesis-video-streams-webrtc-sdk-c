@@ -1,10 +1,19 @@
-cmake_minimum_required(VERSION 3.6.3)
+cmake_minimum_required(VERSION 3.5)
+
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 include(Utilities)
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
 
-project(KinesisVideoWebRTCClient LANGUAGES C)
+#project(KinesisVideoWebRTCClient LANGUAGES C)
+project(kinesis_webrtc LANGUAGES C) 
 
 # User Flags
 option(ADD_MUCLIBC "Add -muclibc c flag" OFF)
@@ -155,7 +164,8 @@ if(BUILD_DEPENDENCIES)
 endif()
 
 ############# find dependent libraries ############
-
+#ROS2
+find_package(ament_cmake REQUIRED)
 find_package(Threads)
 find_package(PkgConfig REQUIRED)
 if (USE_OPENSSL)
@@ -342,3 +352,11 @@ endif()
 if(BUILD_BENCHMARK)
   add_subdirectory(bench)
 endif()
+
+#install ros2 packages
+install(TARGETS kvsWebrtcClientMasterGstSample
+  DESTINATION lib/${PROJECT_NAME})
+  
+ament_export_include_directories(include)
+
+ament_package()
